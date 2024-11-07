@@ -1,0 +1,18 @@
+# Preproposal
+
+## Our Ideas
+
+We are developing a comprehensive health and fitness tracking application that allows users to monitor their nutrition, workouts, sleep patterns, and weight changes over time. The goal is to provide personalized health tips and visualize data through charts and graphs to help users make informed decisions about their health and fitness journey.
+
+We will also search the medical literature to find equations that can help us track user-inputted macronutrient effects and provide real-time nutritional reccomendations
+
+## Other collaborators
+
+I am working with Vijay Sivan, another student in this class
+
+## Questions
+
+1. We want to actually develop an app for this, as it has been a long-time idea. Would python be the best language to complete this in?
+
+2. We were planning on using matplotlib to create graphs and track progress
+
