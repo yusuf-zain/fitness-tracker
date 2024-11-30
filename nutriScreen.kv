@@ -1,0 +1,52 @@
+<NutriScreen>:
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        MDTextField:
+            id: search_input
+            hint_text: "Enter food name"
+            size_hint_x: 0.8
+            pos_hint: {"center_x": 0.5, "center_y": 0.9}
+            mode: "rectangle"
+        MDFlatButton:
+            text: "Search"
+            size_hint_x: 0.2
+            pos_hint: {"center_x": 0.5, "center_y": 0.8}
+            on_release: root.search_food()
+        ScrollView:
+            size_hint: (0.9, 0.6)
+            pos_hint: {"center_x": 0.5, "center_y": 0.45}
+            MDList:
+                id: results_list
+        Image:
+            source: "assets/logo.png"
+            pos_hint: {"center_x": 0.8, "center_y": 0.08}
+            size_hint: 0.25,0.15
+        MDIconButton:
+            icon: "arrow-expand-left"
+            md_bg_color: 0,0,0,1
+            theme_text_color: "Custom"
+            text_color: 1,1,1,1
+            pos_hint: {"center_x": 0.15, "center_y": 0.08}
+            on_release:
+                root.loadHomeScreen()
+        MDLabel:
+            id: total_calories_label
+            text: "Total Calories: 0 kcal"
+            pos_hint: {"center_x": 0.5, "center_y": 0.14}
+            halign: "center"
+            font_style: "H6"
+        MDLabel:
+            id: total_fat_label
+            text: "Total Fat: 0 g"
+            pos_hint: {"center_x": 0.5, "center_y": 0.10}
+            halign: "center"
+        MDLabel:
+            id: total_carbs_label
+            text: "Total Carbs: 0 g"
+            pos_hint: {"center_x": 0.5, "center_y": 0.07}
+            halign: "center"
+        MDLabel:
+            id: total_protein_label
+            text: "Total Protein: 0 g"
+            pos_hint: {"center_x": 0.5, "center_y": 0.04}
+            halign: "center"

@@ -1,0 +1,35 @@
+<ProgressScreen>:
+    name: 'progress'
+    exercise_name: ''
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(10)
+        spacing: dp(10)
+
+        MDLabel:
+            id: exercise_label
+            text: "Exercise: " + root.exercise_name
+            halign: 'center'
+            font_style: 'H5'
+            size_hint_y: None
+            height: dp(50)
+
+        Image:
+            id: progress_image
+            opacity: 0  # Initially hidden
+            size_hint_y: 0.8
+
+        MDLabel:
+            id: no_data_label
+            text: ''
+            halign: 'center'
+            opacity: 0  # Initially hidden
+            size_hint_y: 0.8
+
+        MDRaisedButton:
+            text: 'Back'
+            size_hint_y: None
+            height: dp(50)
+            pos_hint: {'center_x': 0.5}
+            on_release:
+                app.root.current = 'home'

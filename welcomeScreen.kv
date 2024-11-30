@@ -1,0 +1,214 @@
+<WelcomeScreen>:
+    MDFloatLayout:
+        md_bg_color: 1,1,1,1
+        Carousel:
+            id: carousel
+            on_current_slide: root.current_slide(self.index)
+            MDFloatLayout:
+                MDLabel:
+                    id: text1
+                    text: "Welcome"
+                    halign: "center"
+                    font_name: "NotoSans"
+                    font_size: "60sp"
+                    opacity: 1
+                MDLabel:
+                    id: text2
+                    text: "Bienvenido"
+                    halign: "center"
+                    font_name: "NotoSans"
+                    font_size: "60sp"
+                    opacity: 0
+                MDLabel:
+                    id: text3
+                    text: "欢迎"
+                    halign: "center"
+                    font_name: "NotoSansSC"
+                    font_size: "60sp"
+                    opacity: 0
+                MDLabel:
+                    id: text4
+                    text: "स्वागत"
+                    halign: "center"
+                    font_name: "NotoSans"
+                    font_size: "60sp"
+                    opacity: 0
+                MDLabel:
+                    id: text5
+                    text: "ابحرم"
+                    halign: "center"
+                    font_name: "NotoSansArabic"
+                    font_size: "60sp"
+                    opacity: 0
+                MDIconButton:
+                    icon: "arrow-expand-right"
+                    md_bg_color: 0,0,0,1
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                    pos_hint: {"center_x": 0.85, "center_y": 0.08}
+                    on_release:
+                        root.next()
+            MDFloatLayout:
+                MDLabel:
+                    text: "What should we call you?"
+                    halign: "center"
+                    pos_hint: {"center_y": 0.8}
+                    font_name: "NotoSans"
+                    font_size: "45sp"
+                    opacity: 1
+                MDTextField:
+                    id: name_input
+                    hint_text: "First Name"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                    size_hint_x: None
+                    width: 300
+                Image:
+                    source: "assets/logo.png"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.07}
+                    size_hint: 0.25,0.15
+                MDIconButton:
+                    icon: "arrow-expand-right"
+                    md_bg_color: 0,0,0,1
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                    pos_hint: {"center_x": 0.85, "center_y": 0.08}
+                    on_release:
+                        root.getName()
+            MDFloatLayout:
+                MDLabel:
+                    text: "Select your"
+                    halign: "center"
+                    pos_hint: {"center_y": 0.85}
+                    font_name: "NotoSans"
+                    font_size: "45sp"
+                    opacity: 1
+                MDLabel:
+                    text: "gender preference"
+                    halign: "center"
+                    pos_hint: {"center_y": 0.75}
+                    font_name: "NotoSans"
+                    font_size: "45sp"
+                    opacity: 1
+                MDIconButton:
+                    icon: "gender-male"
+                    md_bg_color: 0.5,0,0,1
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                    pos_hint: {"center_x": 0.65, "center_y": 0.5}
+                    size_hint: 0.1,0.1
+                    on_release:
+                        root.genderMale()
+                MDIconButton:
+                    icon: "gender-female"
+                    md_bg_color: 0.5,0,0,1
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                    pos_hint: {"center_x": 0.35, "center_y": 0.5}
+                    size_hint: 0.1,0.1
+                    on_release:
+                        root.genderFemale()
+                Image:
+                    source: "assets/logo.png"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.07}
+                    size_hint: 0.25,0.15
+                MDIconButton:
+                    icon: "arrow-expand-right"
+                    md_bg_color: 0,0,0,1
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                    pos_hint: {"center_x": 0.85, "center_y": 0.08}
+                    on_release:
+                        root.next()
+            MDFloatLayout:
+                MDLabel:
+                    text: "Enter Biometrics"
+                    halign: "center"
+                    pos_hint: {"center_y": 0.85}
+                    font_name: "NotoSans"
+                    font_size: "45sp"
+                    opacity: 1
+                MDTextField:
+                    id: age_input
+                    hint_text: "Age"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.65}
+                    size_hint_x: None
+                    width: 300
+                MDTextField:
+                    id: height_feet_input
+                    hint_text: "Height (feet)"
+                    pos_hint: {"center_x": 0.4, "center_y": 0.5}
+                    size_hint_x: None
+                    width: 300
+                MDTextField:
+                    id: height_inches_input
+                    hint_text: "Height (inches)"
+                    pos_hint: {"center_x": 0.6, "center_y": 0.5}
+                    size_hint_x: None
+                    width: 300
+                MDTextField:
+                    id: weight_input
+                    hint_text: "Weight (pounds)"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.35}
+                    size_hint_x: None
+                    width: 300
+                Image:
+                    source: "assets/logo.png"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.07}
+                    size_hint: 0.25,0.15
+                MDIconButton:
+                    icon: "arrow-expand-right"
+                    md_bg_color: 0,0,0,1
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                    pos_hint: {"center_x": 0.85, "center_y": 0.08}
+                    on_release:
+                        root.getBiometrics()
+            MDFloatLayout:
+                MDLabel:
+                    text: "What is your goal?"
+                    halign: "center"
+                    pos_hint: {"center_y": 0.9}
+                    font_name: "NotoSans"
+                    font_size: "45sp"
+                    opacity: 1
+                Image:
+                    source: "assets/cut-bulk.jpeg"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.6}
+                    size_hint: 0.9,0.9
+                MDTextButton:
+                    text: "Bulk"
+                    font_name: "NotoSans"
+                    font_size: "16sp"
+                    md_bg_color: 0.5,0,0,1
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                    pos_hint: {"center_x": 0.8, "center_y": 0.35}
+                    size_hint: 0.08,0.07
+                    on_release:
+                        root.goalBulk()
+                MDTextButton:
+                    text: "Cut"
+                    font_name: "NotoSans"
+                    font_size: "16sp"
+                    md_bg_color: 0.5,0,0,1
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                    pos_hint: {"center_x": 0.2, "center_y": 0.35}
+                    size_hint: 0.08,0.07
+                    on_release:
+                        root.goalCut()
+                MDTextButton:
+                    text: "Recomp"
+                    font_name: "NotoSans"
+                    font_size: "16sp"
+                    md_bg_color: 0.5,0,0,1
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                    pos_hint: {"center_x": 0.5, "center_y": 0.35}
+                    size_hint: 0.08,0.07
+                    on_release:
+                        root.goalRecomp()
+                Image:
+                    source: "assets/logo.png"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.07}
+                    size_hint: 0.25,0.15

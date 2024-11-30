@@ -1,0 +1,123 @@
+<HomeScreen>:
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        Image:
+            source: "assets/logo.png"
+            pos_hint: {"center_x": 0.8, "center_y": 0.08}
+            size_hint: 0.25,0.15
+        Image:
+            id: pie_chart_image
+            size_hint_x: 0.8
+            pos_hint: {"center_x": 0.85, "center_y": 0.75}
+        MDLabel:
+            text: "Try to maintain 30–40% Carbs, \n20-30% Fats, and \n25–35% Protein"
+            halign: "center"
+            font_name: "PoppinsRegular"
+            pos_hint: {"center_x": 0.85, "center_y": 0.55}
+            font_size: "12sp"
+        MDRaisedButton:
+            text: "Add Nutrients"
+            pos_hint: {"center_x": 0.5, "center_y": 0.57}
+            on_release: root.openNutriScreen()
+        MDLabel:
+            id: display_name
+            text: "Hi User!"
+            pos_hint: {"center_x": 0.5, "center_y": 0.95}
+            halign: "center"
+            font_name: "NotoSans"
+            font_size: "36sp"
+        MDLabel:
+            id: display_goal
+            text: "Your Goal: Goal"
+            halign: "center"
+            font_name: "PoppinsRegular"
+            pos_hint: {"center_x": 0.2, "center_y": 0.825}
+        MDLabel:
+            id: display_BMI
+            text: "BMI: 0 kg/m²"
+            halign: "center"
+            font_name: "PoppinsRegular"
+            pos_hint: {"center_x": 0.2, "center_y": 0.755}
+        MDLabel:
+            id: BMI_goal
+            text: "Goal off BMI: Goal"
+            halign: "center"
+            font_name: "NotoSans"
+            font_size: "16sp"
+            pos_hint: {"center_x": 0.2, "center_y": 0.725}
+        MDLabel:
+            id: calorie_goal
+            text: "Calorie Goal: 0 calories"
+            halign: "center"
+            font_name: "PoppinsRegular"
+            pos_hint: {"center_x": 0.2, "center_y": 0.655}
+        MDLabel:
+            id: calorie_count
+            text: "0/0"
+            halign: "center"
+            font_name: "NotoSans"
+            font_size: "16sp"
+            pos_hint: {"center_x": 0.2, "center_y": 0.625}
+        MDLabel:
+            text: "Nutrient Recommendations"
+            halign: "center"
+            font_name: "PoppinsRegular"
+            pos_hint: {"center_x": 0.2, "center_y": 0.555}
+        MDLabel:
+            id: nutrient_deficiency
+            text: ""
+            halign: "center"
+            font_name: "NotoSans"
+            font_size: "16sp"
+            pos_hint: {"center_x": 0.2, "center_y": 0.525}
+        MDLabel:
+            id: home_total_calories
+            text: "Calories: 0 kcal"
+            halign: "center"
+            font_name: "PoppinsRegular"
+            pos_hint: {"center_x": 0.5, "center_y": 0.8}
+        MDLabel:
+            id: home_total_fat
+            text: "Fat: 0 g"
+            halign: "center"
+            font_name: "PoppinsRegular"
+            pos_hint: {"center_x": 0.5, "center_y": 0.75}
+        MDLabel:
+            id: home_total_carbs
+            text: "Carbs: 0 g"
+            halign: "center"
+            font_name: "PoppinsRegular"
+            pos_hint: {"center_x": 0.5, "center_y": 0.70}
+        MDLabel:
+            id: home_total_protein
+            text: "Protein: 0 g"
+            halign: "center"
+            font_name: "PoppinsRegular"
+            pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        MDLabel:
+            text: "Your Nutrition"
+            pos_hint: {"center_x": 0.2, "center_y": 0.9}
+            halign: "center"
+            font_name: "NotoSans"
+            font_size: "22sp"
+            opacity: 1
+        MDLabel:
+            text: "Your Fitness"
+            pos_hint: {"center_x": 0.2, "center_y": 0.43}
+            halign: "center"
+            font_name: "NotoSans"
+            font_size: "22sp"
+            opacity: 1
+        ScrollView:
+            size_hint: 0.45, 0.35
+            pos_hint: {"center_x": 0.3, "center_y": 0.2}
+            MDList:
+                id: exercise_list
+        MDRaisedButton:
+            text: "Add Workout"
+            pos_hint: {"center_x": 0.7, "center_y": 0.3}
+            on_release: root.startWorkout()
+        MDRaisedButton:
+            text: "Show Progress"
+            pos_hint: {"center_x": 0.7, "center_y": 0.2}
+            on_release: root.showProgress()
