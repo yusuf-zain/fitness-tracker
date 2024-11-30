@@ -1,15 +1,14 @@
+import os
 from kivy.core.text import LabelBase
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
-
 from fitnessScreen import FitnessScreen
 from progressScreen import ProgressScreen
 from welcomeScreen import WelcomeScreen
 from homeScreen import HomeScreen
 from nutriScreen import NutriScreen
 from loadingScreen import LoadingScreen
-import os
 
 Builder.load_file('welcomeScreen.kv')
 Builder.load_file('homeScreen.kv')
@@ -47,7 +46,6 @@ class MainApp(MDApp):
         sm.add_widget(self.nutri_screen)
         sm.add_widget(self.fitness_screen)
         sm.add_widget(self.progress_screen)
-
         sm.current = 'welcome'
 
         return sm

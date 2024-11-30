@@ -3,11 +3,10 @@ from fatsecret import Fatsecret
 from kivymd.uix.screen import MDScreen
 from kivy.app import App
 
-
-
 CONSUMER_KEY = '5bc06d27657c48c1bcb6c172aaf5b7ae'
 CONSUMER_SECRET = 'c6272b2abf1446a196ba2e026f3dce1d'
 fs = Fatsecret(CONSUMER_KEY, CONSUMER_SECRET)
+
 
 class NutriScreen(MDScreen):
     def on_pre_enter(self):
@@ -15,18 +14,14 @@ class NutriScreen(MDScreen):
         self.session_total_fat = 0
         self.session_total_carbs = 0
         self.session_total_protein = 0
-
         self.added_foods = []
-
-        self.ids.total_calories_label.text = "Total Calories: 0 kcal"
         self.ids.total_fat_label.text = "Total Fat: 0 g"
         self.ids.total_carbs_label.text = "Total Carbs: 0 g"
         self.ids.total_protein_label.text = "Total Protein: 0 g"
-
         self.ids.search_input.text = ""
         self.ids.results_list.clear_widgets()
 
-    def search_food(self):
+    def searchFood(self):
         food_name = self.ids.search_input.text
         self.ids.results_list.clear_widgets()
         try:
@@ -43,7 +38,7 @@ class NutriScreen(MDScreen):
                     self.ids.results_list.add_widget(
                         OneLineListItem(
                             text=primary_text,
-                            on_release=lambda x, f=food: self.show_food_details(f)
+                            on_release=lambda x, f=food: self.showFoodDetails(f)
                         )
                     )
             else:
@@ -51,7 +46,7 @@ class NutriScreen(MDScreen):
         except Exception as e:
             self.ids.results_list.add_widget(OneLineListItem(text=f"An error occurred: {str(e)}"))
 
-    def show_food_details(self, food):
+    def showFoodDetails(self, food):
         food_name = food.get('food_name','N/A')
         brand_name = food.get('brand_name','')
         food_description = food.get('food_description','N/A')
@@ -65,25 +60,15 @@ class NutriScreen(MDScreen):
             title="Food Details",
             text=info,
             size_hint=(0.8, None),
-            buttons=[
-                MDFlatButton(
-                    text="ADD",
-                    on_release=lambda x: self.add_food_to_list(food)
-                ),
-                MDFlatButton(
-                    text="CLOSE",
-                    on_release=lambda x: self.dialog.dismiss()
-                ),
-            ],
-        )
+            buttons=[MDFlatButton(text="ADD",on_release=lambda x: self.addFoodToList(food)),MDFlatButton(text="CLOSE",on_release=lambda x: self.dialog.dismiss()),],)
         self.dialog.open()
 
-    def add_food_to_list(self, food):
+    def addFoodToList(self, food):
             self.added_foods.append(food)
-            self.update_total_nutrients()
+            self.updateNutriTotals()
             self.dialog.dismiss()
 
-    def extract_nutritional_info(self):
+    def extractNutritionalInfo(self):
         extracted_info = []
         for food in self.added_foods:
             info = {}
@@ -104,17 +89,12 @@ class NutriScreen(MDScreen):
             except Exception as e:
                 print(f"Error retrieving detailed info for {info['food_name']}: {str(e)}")
                 food_description = food.get('food_description', '')
-                info.update(self.parse_nutrient_info(food_description))
+                info.update(self.parseNutriInfo(food_description))
             extracted_info.append(info)
         return extracted_info
 
-    def parse_nutrient_info(self, description):
-        nutrients = {
-            'calories': 0,
-            'fat': 0,
-            'carbs': 0,
-            'protein': 0
-        }
+    def parseNutriInfo(self, description):
+        nutrients = {'calories': 0,'fat': 0,'carbs': 0,'protein': 0}
         try:
             parts = description.split('-')[-1].strip().split('|')
             for part in parts:
@@ -133,13 +113,12 @@ class NutriScreen(MDScreen):
             print(f"Error parsing nutrients: {str(e)}")
         return nutrients
 
-    def update_total_nutrients(self):
-        extracted_info = self.extract_nutritional_info()
+    def updateNutriTotals(self):
+        extracted_info = self.extractNutritionalInfo()
         self.session_total_calories = sum(info['calories'] for info in extracted_info)
         self.session_total_fat = sum(info['fat'] for info in extracted_info)
         self.session_total_carbs = sum(info['carbs'] for info in extracted_info)
         self.session_total_protein = sum(info['protein'] for info in extracted_info)
-
         self.ids.total_calories_label.text = f"Total Calories: {self.session_total_calories:.2f} kcal"
         self.ids.total_fat_label.text = f"Total Fat: {self.session_total_fat:.2f} g"
         self.ids.total_carbs_label.text = f"Total Carbs: {self.session_total_carbs:.2f} g"
@@ -151,5 +130,4 @@ class NutriScreen(MDScreen):
         app.nutri_data['total_fat'] += self.session_total_fat
         app.nutri_data['total_carbs'] += self.session_total_carbs
         app.nutri_data['total_protein'] += self.session_total_protein
-
         self.manager.current = 'home'

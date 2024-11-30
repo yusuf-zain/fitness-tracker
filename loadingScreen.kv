@@ -1,4 +1,5 @@
 <LoadingScreen>:
+    on_enter: self.ids.progress.start()
     MDFloatLayout:
         Image:
             source: "assets/logo.png"
@@ -11,3 +12,9 @@
             allow_stretch: True
             anim_delay: 0.03
             anim_reset: True
+        MDProgressBar:
+            id: progress
+            orientation: "horizontal"
+            type: "indeterminate"
+            running_duration: 1
+            catching_duration: 1

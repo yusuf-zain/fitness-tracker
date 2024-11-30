@@ -5,10 +5,10 @@ from kivy.app import App
 
 
 class WelcomeScreen(MDScreen):
-    id = 1
     def on_enter(self):
         self.start()
 
+    id = 1
     def start(self, *args):
         anim = Animation(opacity=1,duration=1)
         anim += Animation(opacity=1, duration=2)

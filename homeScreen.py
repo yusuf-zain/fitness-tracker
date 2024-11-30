@@ -9,6 +9,7 @@ from kivymd.uix.list import OneLineListItem
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRaisedButton
 
+
 class SelectableItem(OneLineListItem):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -19,6 +20,7 @@ class SelectableItem(OneLineListItem):
 
     def deselect(self):
         self.bg_color = (1, 1, 1, 1)
+
 
 class HomeScreen(MDScreen):
     exercises = {'Chest':["Bar Bell Bench Press","Dumbbell Bench Press","Cable Bench Press","Smith Machine Bench Press","Cable Chest Fly","Cable Crossover","Chest Dip","Chest Fly","Dumbbell Chest Fly","Machine Chest Press","Decline Barbell Bench Press","Decline Dumbbell Bench Press","Decline Smith Machine Bench Press","Barbell Floor Press","Incline Barbell Bench Press","Incline Cable Bench Press","Incline Dumbbell Bench Press","Incline Smith Machine Bench Press","Incline Dumbbell Chest Fly","Iso-Lateral Chest Press","Incline Chest Press","Pec Deck","Plate Loaded Incline Chest Press","Dumbbell Pullover","Machine Pullover","Pushup","Supine Press"],'Back':["Back Extension","Dumbbell Bent Over One Arm Row","Barbell Bent Over Row","Dumbbell Bent Over Row","Chin Up","Assisted Chin Up","Deadlift","Good Morning","Incline Row","Inverted Row","Iso-Lateral Row","Kneeling Pulldown","Cable Lat Pulldown","Machine Lat Pulldown","Single Arm Lat Pulldown","Pendlay Row","Pull Up","Assisted Pull Up","Rack Pull","Romanian Deadlift","Cable Seated Row","Machine Seated Row","Machine Shrugs","Dumbbell Shrugs","Sumo Deadlift","T Bar Rows","Upright Rows"],'Legs':["Box Squat","Bulgarian Split Squat","Calf Press on Leg Press","Calf Press on Seated Leg Press","Dumbbell Deadlift","Smith Machine Deadlift","Front Squat","Glute Ham Raise","Glute Kickback","Goblet Squat","Hack Squat","Hip Abductor","Hip Adductor","Hip Thrust","Leg Extension","Leg Press","Barbell Lunge","Lying Leg Curl","Pistol Squats","Plate Loaded Seated Calf Raises","Seated Leg Curl","Seated Leg Press","Squat","Standing Calf Raise"],'Arms':["Dumbell Bicep Curl","Barbell Bicep Curl","Cable Bicep Curl","Machine Bicep Curl","Cable Kickback","Cable Hammer Curl","Dumbbell Hammer Curl","Incline Curl","Barbell Preacher Curl","Dumbbell Preacher Curl","Barbell Reverse Curls","Barbell Skull Crushers","Dumbbell Skul Crushers","Triceps Dips","Triceps Extension","Barbell Triceps Extension","Cable Triceps Extension","Dumbbell Triceps Extension","Tricep Pushdown","Wrist Roller"]}
@@ -42,10 +44,10 @@ class HomeScreen(MDScreen):
         self.calculateBMIGoal()
         self.calorieGoal()
         self.nutriDeficiency()
-        self.build_exercise_list()
-        self.create_pie_chart(total_fat, total_carbs, total_protein)
+        self.buildExerciseList()
+        self.createPieChart(total_fat, total_carbs, total_protein)
 
-    def create_pie_chart(self, fat, carbs, protein):
+    def createPieChart(self, fat, carbs, protein):
         labels = 'Fat', 'Carbs', 'Protein'
         sizes = [fat, carbs, protein]
         colors = ['gold', 'lightcoral', 'lightskyblue']
@@ -147,24 +149,18 @@ class HomeScreen(MDScreen):
     def openNutriScreen(self):
         self.manager.current = 'nutri'
 
-
-
-
-
-    def build_exercise_list(self):
+    def buildExerciseList(self):
         self.ids.exercise_list.clear_widgets()
         for muscle_group in self.exercises:
-            # Add muscle group header
             header = OneLineListItem(text=f"{muscle_group} Exercises")
             header.font_style = 'Subtitle1'
             header.disabled = True
             self.ids.exercise_list.add_widget(header)
-            # Add exercises
             for exercise in self.exercises[muscle_group]:
-                item = SelectableItem(text=exercise, on_release=self.on_exercise_selected)
+                item = SelectableItem(text=exercise, on_release=self.selectedExercise)
                 self.ids.exercise_list.add_widget(item)
 
-    def on_exercise_selected(self, instance):
+    def selectedExercise(self, instance):
         if instance.disabled:
             return
         if self.selected_exercise:
@@ -173,7 +169,7 @@ class HomeScreen(MDScreen):
         self.selected_exercise = instance
         self.selected_exercise_name = instance.text
 
-    def on_exercise_selected(self, instance):
+    def selectedExercise(self, instance):
         if self.selected_exercise:
             self.selected_exercise.bg_color = (1, 1, 1, 1)
         instance.bg_color = (0.5, 0.5, 1, 1)
@@ -187,10 +183,7 @@ class HomeScreen(MDScreen):
             self.dialog = MDDialog(
                 title="No Exercise Selected",
                 text="Please select an exercise to proceed.",
-                buttons=[
-                    MDRaisedButton(text="OK", on_release=lambda x: self.dialog.dismiss())
-                ]
-            )
+                buttons=[MDRaisedButton(text="OK", on_release=lambda x: self.dialog.dismiss())])
             self.dialog.open()
 
     def showProgress(self):
@@ -200,10 +193,7 @@ class HomeScreen(MDScreen):
             self.dialog = MDDialog(
                 title="No Exercise Selected",
                 text="Please select an exercise to proceed.",
-                buttons=[
-                    MDRaisedButton(text="OK", on_release=lambda x: self.dialog.dismiss())
-                ]
-            )
+                buttons=[MDRaisedButton(text="OK", on_release=lambda x: self.dialog.dismiss())])
             self.dialog.open()
 
     def openFitnessScreen(self, exercise_name):
