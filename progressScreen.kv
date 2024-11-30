@@ -5,7 +5,6 @@
         orientation: 'vertical'
         padding: dp(10)
         spacing: dp(10)
-
         MDLabel:
             id: exercise_label
             text: "Exercise: " + root.exercise_name
@@ -13,23 +12,21 @@
             font_style: 'H5'
             size_hint_y: None
             height: dp(50)
-
         Image:
             id: progress_image
             opacity: 0  # Initially hidden
             size_hint_y: 0.8
-
         MDLabel:
             id: no_data_label
             text: ''
             halign: 'center'
             opacity: 0  # Initially hidden
             size_hint_y: 0.8
-
-        MDRaisedButton:
-            text: 'Back'
-            size_hint_y: None
-            height: dp(50)
-            pos_hint: {'center_x': 0.5}
+        MDIconButton:
+            icon: "arrow-expand-left"
+            md_bg_color: 0,0,0,1
+            theme_text_color: "Custom"
+            text_color: 1,1,1,1
+            pos_hint: {"center_x": 0.15, "center_y": 0.08}
             on_release:
                 app.root.current = 'home'
