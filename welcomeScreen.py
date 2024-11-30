@@ -34,17 +34,7 @@ class WelcomeScreen(MDScreen):
             self.next()
         else:
             from kivymd.uix.dialog import MDDialog
-            self.dialog = MDDialog(
-                title="Error",
-                text="Please enter your name.",
-                size_hint=(0.8, None),
-                buttons=[
-                    MDFlatButton(
-                        text="OK",
-                        on_release=lambda x: self.dialog.dismiss()
-                    ),
-                ],
-            )
+            self.dialog = MDDialog(title="Error",text="Please enter your name.",size_hint=(0.8, None),buttons=[MDFlatButton(text="OK",on_release=lambda x: self.dialog.dismiss()),],)
             self.dialog.open()
 
     def getBiometrics(self):
